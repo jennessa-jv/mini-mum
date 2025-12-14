@@ -13,7 +13,7 @@ function PrivateRoute({ children }) {
 export default function App() {
   return (
     <>
-      <Header />
+      {/* <Header />
       <div className="max-w-4xl mx-auto p-4">
         <Routes>
           <Route path="/login" element={<Login />} />
@@ -26,7 +26,7 @@ export default function App() {
           } />
           <Route path="*" element={<Navigate to="/dashboard" />} />
         </Routes>
-      </div>
+      </div> */}
     </>
   )
 }
