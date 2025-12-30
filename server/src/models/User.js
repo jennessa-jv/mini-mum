@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema(
 userSchema.pre("save", async function (next) { // save- Mongoose LIFECYCLE EVENT
   if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 10);
-  next();
+  // next();
 });
 
 userSchema.methods.comparePassword = function (password) {

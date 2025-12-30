@@ -5,11 +5,33 @@ import User from "../models/User.js";
 const router = express.Router(); //part of express and it makes the code modular, matlab it seperates al routes into files
 
 router.post("/register", async (req, res) => {
-  const { name, email, password } = req.body;
-  const user = await User.create({ name, email, password });
+  try {
+    const { name, email, password } = req.body;
 
-  res.status(201).json({ message: "User registered" });
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(409).json({ message: "Email already registered" });
+    }
+
+    await User.create({ name, email, password });
+
+    res.status(201).json({ message: "User registered successfully" });
+  } catch (error) {
+    console.error("REGISTER ERROR:", error);
+
+    // Handle duplicate key error just in case
+    if (error.code === 11000) {
+      return res.status(409).json({ message: "Email already registered" });
+    }
+
+    res.status(500).json({ message: "Server error" });
+  }
 });
+
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;

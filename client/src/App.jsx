@@ -1,32 +1,59 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
-import Login from './pages/Login'
-import Register from './pages/Register'
-import Dashboard from './pages/Dashboard'
-import VitalsForm from './pages/VitalsForm'
-import Header from './components/Header'
-import { getToken } from './services/auth'
-
-function PrivateRoute({ children }) {
-  return getToken() ? children : <Navigate to="/login" replace />
-}
+import { Routes, Route, Navigate } from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
+// import VitalsForm from "./pages/VitalsForm";
+import Header from "./components/Header";
+import PrivateRoute from "./PrivateRoute";
+import { isAuthenticated } from "./services/auth";
 
 export default function App() {
   return (
     <>
-      {/* <Header />
+      {/* Show Header only if logged in */}
+      {isAuthenticated() && <Header />}
+
       <div className="max-w-4xl mx-auto p-4">
         <Routes>
+          {/* Public Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={
-            <PrivateRoute><Dashboard /></PrivateRoute>
-          } />
-          <Route path="/vitals" element={
-            <PrivateRoute><VitalsForm /></PrivateRoute>
-          } />
-          <Route path="*" element={<Navigate to="/dashboard" />} />
+
+          {/* Protected Routes */}
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
+
+          {/* <Route
+            path="/vitals"
+            element={
+              <PrivateRoute>
+                <VitalsForm />
+              </PrivateRoute>
+            }
+          /> */}
+
+          {/* Root route */}
+          <Route
+            path="/"
+            element={
+              isAuthenticated() ? (
+                <Navigate to="/dashboard" replace />
+              ) : (
+                <Navigate to="/login" replace />
+              )
+            }
+          />
+
+          {/* Catch-all */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-      </div> */}
+      </div>
     </>
-  )
+  );
 }
