@@ -17,7 +17,7 @@ router.post("/register", async (req, res) => {
       return res.status(409).json({ message: "Email already registered" });
     }
 
-    await User.create({ name, email, password });
+    await User.create({ name, email, password }); //we can use the new keyword also
 
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
