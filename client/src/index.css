@@ -1,3 +1,160 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* =========================
+   🌸 GLOBAL RESET & BASE
+   ========================= */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  background-color: #fdf4f7;
+  color: #4a4a4a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* =========================
+   ☁️ CLOUD ANIMATION
+   ========================= */
+
+@keyframes drift {
+  from {
+    background-position-x: 0%;
+  }
+  to {
+    background-position-x: 100%;
+  }
+}
+
+.clouds {
+  animation: drift 120s linear infinite;
+}
+
+/* =========================
+   ✨ SPARKLES
+   ========================= */
+
+@keyframes sparkle {
+  0% {
+    opacity: 0.2;
+    transform: scale(0.8) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(20deg);
+  }
+  100% {
+    opacity: 0.2;
+    transform: scale(0.8) rotate(0deg);
+  }
+}
+
+.sparkle {
+  animation: sparkle 2.5s ease-in-out infinite;
+  display: inline-block;
+}
+
+/* =========================
+   🎮 BUTTON POLISH
+   ========================= */
+
+button {
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* =========================
+   🌸 INPUT FOCUS
+   ========================= */
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(231, 84, 128, 0.3);
+}
+
+/* =========================
+   💖 SCROLLBAR (CHROME)
+   ========================= */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fde8ef;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#e75480, #f07c9b);
+  border-radius: 10px;
+}
+
+/* =========================
+   🧁 CARD FLOAT EFFECT
+   ========================= */
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* =========================
+   🌙 SELECTION COLOR
+   ========================= */
+
+::selection {
+  background: #e75480;
+  color: #fdf4f7;
+}
+
+/* =========================
+   🎀 SMOOTH IMAGES
+   ========================= */
+
+img {
+  image-rendering: auto;
+  user-select: none;
+}
+
+/* =========================
+   🩷 LINKS
+   ========================= */
+
+a {
+  color: #e75480;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   🌸 SAFE AREA (MOBILE)
+   ========================= */
+
+body {
+  padding-bottom: env(safe-area-inset-bottom);
+}
