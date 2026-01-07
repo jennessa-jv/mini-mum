@@ -14,46 +14,52 @@ export default function Header() {
   const isRegisterPage = location.pathname === "/register";
 
   return (
-    <header className="relative overflow-hidden bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 text-white shadow-xl">
+    <header className="relative overflow-hidden bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 text-white shadow-lg">
       
-      {/* ✨ Sparkle Layer */}
+      {/* ✨ Sparkles */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-4 left-10 w-2 h-2 bg-white/40 rounded-full animate-ping" />
-        <div className="absolute top-8 right-16 w-1.5 h-1.5 bg-white/50 rounded-full animate-pulse" />
-        <div className="absolute bottom-6 left-1/3 w-1 h-1 bg-white/30 rounded-full animate-pulse" />
+        <div className="absolute top-3 left-10 w-2 h-2 bg-white/40 rounded-full animate-ping" />
+        <div className="absolute top-5 right-16 w-1.5 h-1.5 bg-white/50 rounded-full animate-pulse" />
       </div>
 
-      <div className="relative max-w-6xl mx-auto flex justify-between items-center p-4">
+      {/* ⬇️ thickness control here */}
+      <div className="relative max-w-6xl mx-auto flex justify-between items-center px-4 py-3">
         
-        {/* 🌸 Logo / Title */}
-        <div className="flex items-center gap-3 group">
-          <span className="text-3xl transition-transform duration-300 group-hover:rotate-12">
+        {/* 🌸 Brand */}
+        <div className="flex items-center gap-2 group">
+          <span className="text-2xl transition-transform duration-300 group-hover:rotate-12">
             🌸
           </span>
 
           <div>
-            <h1 className="text-xl font-extrabold tracking-wide">
-              Mini-mum
+            <h1
+              style={{ fontFamily: "'Baloo 2', cursive" }}
+              className="text-xl font-extrabold tracking-wide leading-tight"
+            >
+              Maternal Quest
             </h1>
-            <p className="text-xs text-white/80">
+
+            <p
+              style={{ fontFamily: "Poppins, sans-serif" }}
+              className="text-[11px] text-white/80 leading-none"
+            >
               Level up your journey ✨
             </p>
           </div>
         </div>
 
         {/* 👉 Right Side */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           
-          {/* 🏆 Authenticated */}
           {isAuthenticated() && (
             <>
-              <span className="text-sm bg-white/20 backdrop-blur-md px-4 py-1 rounded-full border border-white/30 shadow">
+              <span className="text-xs bg-white/20 backdrop-blur-md px-3 py-1 rounded-full border border-white/30 shadow font-semibold">
                 Level 1 🤰
               </span>
 
               <button
                 onClick={handleLogout}
-                className="relative bg-white text-pink-600 px-5 py-1.5 rounded-full font-semibold overflow-hidden group"
+                className="relative bg-white text-pink-600 px-4 py-1.5 rounded-full text-sm font-semibold overflow-hidden group"
               >
                 <span className="relative z-10">Exit</span>
                 <span className="absolute inset-0 bg-pink-100 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
@@ -61,11 +67,10 @@ export default function Header() {
             </>
           )}
 
-          {/* 🔁 Login / Register Swap */}
           {!isAuthenticated() && isLoginPage && (
             <Link
               to="/register"
-              className="bg-white text-pink-600 px-5 py-1.5 rounded-full font-semibold shadow hover:scale-105 transition"
+              className="bg-white text-pink-600 px-4 py-1.5 rounded-full text-sm font-semibold shadow hover:scale-105 transition"
             >
               Register
             </Link>
@@ -74,7 +79,7 @@ export default function Header() {
           {!isAuthenticated() && isRegisterPage && (
             <Link
               to="/login"
-              className="bg-white text-pink-600 px-5 py-1.5 rounded-full font-semibold shadow hover:scale-105 transition"
+              className="bg-white text-pink-600 px-4 py-1.5 rounded-full text-sm font-semibold shadow hover:scale-105 transition"
             >
               Login
             </Link>

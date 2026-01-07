@@ -5,7 +5,13 @@ export default {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+  extend: {
+    fontFamily: {
+      brand: ["'Baloo 2'", "cursive"],
+      ui: ["Poppins", "sans-serif"],
+    },
   },
+},
+
   plugins: [],
 }
