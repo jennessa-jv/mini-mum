@@ -31,7 +31,7 @@ export default function Register() {
   const submit = async (e) => {
     e.preventDefault();
     await register(name, email, password);
-    navigate("/dashboard");
+    navigate("/login");
   };
 
   const scrollToForm = () => {

@@ -5,10 +5,16 @@ export const login = async (email, password) => {
   localStorage.setItem("token", res.data.token);
 };
 
-export const register = (name, email, password) =>
-  api.post("/auth/register", { name, email, password });
-
-export const logout = () => localStorage.removeItem("token");
+export const register = async (name, email, password) => {
+  const res = await api.post("/auth/register", { name, email, password });
+  localStorage.setItem("token", res.data.token);
+  return res.data;
+};
+export const logout = () => {
+  localStorage.removeItem("token");
+};
 
 export const isAuthenticated = () =>
   Boolean(localStorage.getItem("token"));
+
+

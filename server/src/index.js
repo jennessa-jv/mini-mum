@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./db.js";
 import authRoutes from "./routes/auth.js";
+import periodRoutes from "./routes/period.js";
 // import pregnancyRoutes from "./routes/pregnancy.js";
 // import vitalsRoutes from "./routes/vitals.js";
 // import predictRoutes from "./routes/predict.js";
@@ -13,6 +14,8 @@ const app = express(); //belongs to express, app is the SERVER
 app.use(cors()); //express again
 app.use(express.json()); //express 🔹 Belongs to: Express 🔹 What it does: Allows server to read JSON from requests Without this: req.body === undefined
 // where ever app.use is there itll be express only
+
+app.use("/api/period", periodRoutes);
 
 app.use("/api/auth", authRoutes);
 // app.use("/api/pregnancy", pregnancyRoutes);
