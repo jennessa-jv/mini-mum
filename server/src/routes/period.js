@@ -22,6 +22,13 @@ router.get("/predict", auth, async (req, res) => {
       message: "Not enough data"
     });
   }
+  router.get("/history", auth, async (req, res) => {
+  const periods = await Period.find({ user: req.user.id }).sort({
+    startDate: 1
+  });
+  res.json(periods);
+});
+
 
   const diffs = [];
 
