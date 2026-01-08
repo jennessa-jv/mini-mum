@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import Header from "./components/Header";
 import PrivateRoute from "./PrivateRoute";
 import { isAuthenticated } from "./services/auth";
+import PeriodCorner from "./pages/PeriodCorner";
 
 export default function App() {
   return (
@@ -49,6 +50,17 @@ export default function App() {
               )
             }
           />
+          import PeriodCorner from "./pages/PeriodCorner";
+
+<Route
+  path="/period-corner"
+  element={
+    <PrivateRoute>
+      <PeriodCorner />
+    </PrivateRoute>
+  }
+/>
+
 
           {/* Catch-all */}
           <Route path="*" element={<Navigate to="/" replace />} />
