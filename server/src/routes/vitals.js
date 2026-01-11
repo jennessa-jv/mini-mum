@@ -5,33 +5,68 @@ import auth from "../middleware/auth.js";
 
 const router = express.Router();
 
+/**
+ * CREATE VITALS
+ * POST /api/vitals
+ */
 router.post("/", auth, async (req, res) => {
-  const pregnancy = await Pregnancy.findOne({
-    user: req.user.id,
-    status: "pregnant"
-  });
+  try {
+    const {
+      systolicBP,
+      diastolicBP,
+      weight,
+      bloodSugar,
+      heartRate
+    } = req.body;
 
-  const vital = await Vital.create({
-    user: req.user.id,
-    pregnancy: pregnancy?._id,
-    ...req.body
-  });
+    // Validation
+    if (
+      systolicBP === undefined ||
+      diastolicBP === undefined ||
+      weight === undefined ||
+      bloodSugar === undefined ||
+      heartRate === undefined
+    ) {
+      return res.status(400).json({ message: "Missing vitals data" });
+    }
 
-  res.status(201).json(vital);
+    const pregnancy = await Pregnancy.findOne({
+      user: req.user.id,
+      status: "pregnant"
+    });
+
+    const vital = await Vital.create({
+      user: req.user.id,
+      pregnancy: pregnancy ? pregnancy._id : null,
+      systolicBP: Number(systolicBP),
+      diastolicBP: Number(diastolicBP),
+      weight: Number(weight),
+      bloodSugar: Number(bloodSugar),
+      heartRate: Number(heartRate)
+    });
+
+    res.status(201).json(vital);
+  } catch (err) {
+    console.error("🔥 Vitals save error:", err);
+    res.status(500).json({ message: "Failed to save vitals" });
+  }
 });
 
+/**
+ * GET LATEST VITALS
+ * GET /api/vitals/latest
+ */
 router.get("/latest", auth, async (req, res) => {
-  const vital = await Vital.findOne({ user: req.user.id }).sort({
-    createdAt: -1
-  });
-  res.json(vital);
-});
+  try {
+    const vital = await Vital.findOne({ user: req.user.id }).sort({
+      createdAt: -1
+    });
 
-router.get("/history", auth, async (req, res) => {
-  const vitals = await Vital.find({ user: req.user.id }).sort({
-    createdAt: -1
-  });
-  res.json(vitals);
+    res.json(vital || null);
+  } catch (err) {
+    console.error("🔥 Fetch vitals error:", err);
+    res.status(500).json({ message: "Failed to fetch vitals" });
+  }
 });
 
 export default router;

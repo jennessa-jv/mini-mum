@@ -1,31 +1,22 @@
-import express from "express";
-import cors from "cors";
+import http from "http";
 import dotenv from "dotenv";
 import connectDB from "./db.js";
-import authRoutes from "./routes/auth.js";
-import periodRoutes from "./routes/period.js";
-// import pregnancyRoutes from "./routes/pregnancy.js";
-// import vitalsRoutes from "./routes/vitals.js";
-// import predictRoutes from "./routes/predict.js";
-dotenv.config(); //🔹 Belongs to: Node.js🔹 What it does:Reads .env Makes variables available via process.env
-connectDB(); //🔹 Belongs to: Node.js🔹 What it does:Connects your app to MongoDB Runs once when the server starts
+import app from "./app.js";
+import { initSocket } from "./socket.js";
 
-const app = express(); //belongs to express, app is the SERVER
-app.use(cors()); //express again
-app.use(express.json()); //express 🔹 Belongs to: Express 🔹 What it does: Allows server to read JSON from requests Without this: req.body === undefined
-// where ever app.use is there itll be express only
+dotenv.config();
 
-app.use("/api/period", periodRoutes);
+// 🛢️ Connect DB
+connectDB();
 
-app.use("/api/auth", authRoutes);
-// app.use("/api/pregnancy", pregnancyRoutes);
-// app.use("/api/vitals", vitalsRoutes);
-// app.use("/api/predict", predictRoutes);
+// 🌐 Create HTTP server using Express app
+const server = http.createServer(app);
+
+// 🔌 Attach Socket.IO to SAME server
+initSocket(server);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () =>
-  console.log(`✅ Server running on port ${PORT}`)
-);
 
-
-
+server.listen(PORT, () => {
+  console.log(`🚀 Server + WebSocket running on port ${PORT}`);
+});

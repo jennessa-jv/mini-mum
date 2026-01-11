@@ -16,4 +16,4 @@ const vitalSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Vitals", vitalSchema);
+export default mongoose.model("Vital", vitalSchema);
