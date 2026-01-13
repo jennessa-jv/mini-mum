@@ -1,6 +1,6 @@
 import { Server } from "socket.io";
+import axios from "axios";
 import SafetyZone from "./models/SafetyZone.js";
-// import fetch from "node-fetch";
 
 let io;
 
@@ -13,7 +13,7 @@ export function initSocket(server) {
     console.log("🟢 Client connected:", socket.id);
   });
 
-  // 🔁 Stream every 15 seconds
+  // stream every 15 seconds
   setInterval(streamFromML, 15000);
 }
 
@@ -22,33 +22,51 @@ async function streamFromML() {
     const zones = await SafetyZone.find();
     console.log(`📦 Zones fetched: ${zones.length}`);
 
-    const streamedZones = await Promise.all(
-      zones.map(async (zone) => {
-        // 🧠 Call Python ML API
-        const res = await fetch("http://localhost:8000/predict", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            crime_score: zone.crime_score,
-          }),
-        });
+    const enriched = await Promise.all(
+      zones.map(async (z) => {
+        try {
+          const res = await axios.post(
+            "http://127.0.0.1:8000/predict",
+            {
+              crime_score: Number(z.crime_score),
+            },
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+              timeout: 5000,
+            }
+          );
 
-        const ml = await res.json();
+          return {
+            id: z._id,
+            name: z.name,
+            coordinates: z.coordinates,
+            crimeScore: z.crime_score,
+            riskLevel: res.data.riskLevel,
+            confidence: res.data.confidence,
+          };
+        } catch (err) {
+          console.error(
+            `❌ ML axios failed for ${z.name}:`,
+            err.response?.data || err.message
+          );
 
-        return {
-          id: zone._id,
-          name: zone.name,
-          coordinates: zone.coordinates,
-          crimeScore: zone.crime_score,
-          riskLevel: ml.riskLevel,
-          confidence: ml.confidence,
-        };
+          // fallback so socket never breaks
+          return {
+            id: z._id,
+            name: z.name,
+            coordinates: z.coordinates,
+            crimeScore: z.crime_score,
+            riskLevel: "Unknown",
+            confidence: 0,
+          };
+        }
       })
     );
 
-    console.log(`📡 Emitting ${streamedZones.length} ML zones`);
-    io.emit("risk-update", streamedZones);
-
+    io.emit("risk-update", enriched);
+    console.log(`📡 Emitting ${enriched.length} ML zones`);
   } catch (err) {
     console.error("❌ ML stream failed:", err.message);
   }

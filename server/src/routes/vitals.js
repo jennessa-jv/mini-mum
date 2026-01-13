@@ -68,5 +68,22 @@ router.get("/latest", auth, async (req, res) => {
     res.status(500).json({ message: "Failed to fetch vitals" });
   }
 });
+/**
+ * GET VITALS HISTORY
+ * GET /api/vitals/history
+ */
+router.get("/history", auth, async (req, res) => {
+  try {
+    const vitals = await Vital.find({ user: req.user.id }).sort({
+      createdAt: 1 // oldest → newest (perfect for charts)
+    });
+
+    res.json(vitals);
+  } catch (err) {
+    console.error("🔥 Fetch vitals history error:", err);
+    res.status(500).json({ message: "Failed to fetch vitals history" });
+  }
+});
+
 
 export default router;
