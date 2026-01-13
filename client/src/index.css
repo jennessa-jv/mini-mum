@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* =========================
-   🌸 GLOBAL RESET & BASE
-   ========================= */
 
 html,
 body {
@@ -100,9 +97,6 @@ input:focus {
   border-radius: 10px;
 }
 
-/* =========================
-   🧁 CARD FLOAT EFFECT
-   ========================= */
 
 @keyframes float {
   0% {
@@ -120,27 +114,15 @@ input:focus {
   animation: float 6s ease-in-out infinite;
 }
 
-/* =========================
-   🌙 SELECTION COLOR
-   ========================= */
-
 ::selection {
   background: #e75480;
   color: #fdf4f7;
 }
 
-/* =========================
-   🎀 SMOOTH IMAGES
-   ========================= */
-
 img {
   image-rendering: auto;
   user-select: none;
 }
-
-/* =========================
-   🩷 LINKS
-   ========================= */
 
 a {
   color: #e75480;
@@ -150,10 +132,6 @@ a {
 a:hover {
   text-decoration: underline;
 }
-
-/* =========================
-   🌸 SAFE AREA (MOBILE)
-   ========================= */
 
 body {
   padding-bottom: env(safe-area-inset-bottom);

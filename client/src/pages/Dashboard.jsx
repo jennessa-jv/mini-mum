@@ -34,13 +34,21 @@ export default function Dashboard() {
         </div>
 
         <div className="bg-white rounded-2xl shadow-lg p-6 border-4 border-pink-100">
-          <h2 className="text-xl font-bold text-pink-600 mb-2">
-            🩺 Health Overview
-          </h2>
-          <p className="text-sm text-gray-500">
-            More insights coming soon…
-          </p>
-        </div>
+  <h2 className="text-xl font-bold text-pink-600 mb-2">
+    🩺 Health Overview
+  </h2>
+  <p className="text-sm text-gray-500 mb-4">
+    View vitals history and health trends.
+  </p>
+
+  <button
+    onClick={() => navigate("/health-trends")}
+    className="bg-pink-600 text-white px-4 py-2 rounded-lg"
+  >
+    View Health Trends →
+  </button>
+</div>
+
       </div>
     </div>
   );

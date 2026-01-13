@@ -8,6 +8,7 @@ import SafetyMap from "./pages/SafetyMap";
 import Header from "./components/Header";
 import PrivateRoute from "./PrivateRoute";
 import { isAuthenticated } from "./services/auth";
+import VitalsTrends from "./pages/VitalsTrends";
 
 export default function App() {
   return (
@@ -29,6 +30,14 @@ export default function App() {
               </PrivateRoute>
             }
           />
+<Route
+  path="/health-trends"
+  element={
+    <PrivateRoute>
+      <VitalsTrends />
+    </PrivateRoute>
+  }
+/>
 
           <Route
             path="/safety-map"

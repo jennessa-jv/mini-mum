@@ -7,10 +7,7 @@ export default function useRiskStream() {
   const [zones, setZones] = useState([]);
 
   useEffect(() => {
-    socket.on("risk-update", (data) => {
-      setZones(data);
-    });
-
+    socket.on("risk-update", setZones);
     return () => socket.off("risk-update");
   }, []);
 
