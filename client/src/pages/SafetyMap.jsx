@@ -13,7 +13,6 @@ export default function SafetyMap() {
 
   return (
     <div style={{ position: "relative" }}>
-      {/* -------- TOP RISK INDICATOR -------- */}
       <div
         style={{
           position: "fixed",
@@ -70,7 +69,6 @@ export default function SafetyMap() {
         </div>
       </div>
 
-      {/* -------- MAP -------- */}
       <MapContainer center={[20.59, 78.96]} zoom={5} style={{ height: "100vh" }}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
