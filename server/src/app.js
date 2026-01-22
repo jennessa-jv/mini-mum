@@ -7,12 +7,13 @@ import predictRoutes from "./routes/predict.js";
 import pregnancyRoutes from "./routes/pregnancy.js";
 import vitalsRoutes from "./routes/vitals.js";
 import safetyRoutes from "./routes/safety.js";
+import doctorRoutes from "./routes/doctors.js";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-
+app.use("/api/doctors", doctorRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/period", periodRoutes);
 app.use("/api/predict", predictRoutes);
