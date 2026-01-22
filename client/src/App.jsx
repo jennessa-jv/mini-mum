@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import PrivateRoute from "./PrivateRoute";
 import { isAuthenticated } from "./services/auth";
 import VitalsTrends from "./pages/VitalsTrends";
+import CancerPrediction from "./pages/CancerPrediction";
 
 export default function App() {
   return (
@@ -77,7 +78,7 @@ export default function App() {
               )
             }
           />
-
+<Route path="/cancer-prediction" element={<CancerPrediction />} />
           {/* Catch all */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

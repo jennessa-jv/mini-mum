@@ -9,10 +9,10 @@ export default function Dashboard() {
         🌼 Dashboard
       </h1>
 
-      {/* 🔥 SAFETY MAP BUTTON */}
+
       <button
         onClick={() => navigate("/safety-map")}
-        className="bg-pink-600 text-white px-4 py-2 rounded mb-6"
+        className="bg-pink-600 text-pink px-4 py-2 rounded mb-6"
       >
         🌍 View Safety Map
       </button>
@@ -48,6 +48,22 @@ export default function Dashboard() {
     View Health Trends →
   </button>
 </div>
+<div className="bg-white rounded-2xl shadow-lg p-6 border-4 border-rose-200">
+  <h2 className="text-xl font-bold text-rose-600 mb-2">
+    🧬 Cancer Risk Check
+  </h2>
+  <p className="text-sm text-gray-600 mb-4">
+    Predict breast cancer risk using ML models.
+  </p>
+
+  <button
+    onClick={() => navigate("/cancer-prediction")}
+    className="bg-rose-600 text-white px-4 py-2 rounded-lg"
+  >
+    Start Prediction →
+  </button>
+</div>
+
 
       </div>
     </div>
