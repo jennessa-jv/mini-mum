@@ -63,6 +63,23 @@ export default function Dashboard() {
     Start Prediction →
   </button>
 </div>
+<button
+  onClick={() => navigate("/doctors")}
+  className="
+    flex items-center gap-2
+    bg-pink-500 text-white
+    px-6 py-3
+    rounded-xl
+    font-medium
+    shadow-md
+    transition-all duration-200
+    hover:bg-pink-600 hover:shadow-lg
+    active:scale-[0.98]
+  "
+>
+  🩺 Find Nearby Doctors
+</button>
+
 
 
       </div>

@@ -10,7 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import { isAuthenticated } from "./services/auth";
 import VitalsTrends from "./pages/VitalsTrends";
 import CancerPrediction from "./pages/CancerPrediction";
-
+import NearbyDoctors from "./pages/NearbyDoctos";
 export default function App() {
   return (
     <>
@@ -78,7 +78,26 @@ export default function App() {
               )
             }
           />
-<Route path="/cancer-prediction" element={<CancerPrediction />} />
+          <Route
+            path="/cancer-prediction"
+            element={
+              <PrivateRoute>
+               {<CancerPrediction />}
+              </PrivateRoute>
+            }
+          />
+          import NearbyDoctors from "./pages/NearbyDoctors";
+
+<Route
+  path="/doctors"
+  element={
+    <PrivateRoute>
+      <NearbyDoctors />
+    </PrivateRoute>
+  }
+/>
+
+
           {/* Catch all */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
