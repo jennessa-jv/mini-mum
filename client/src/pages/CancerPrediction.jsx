@@ -216,14 +216,14 @@ export default function CancerPrediction() {
           Predict
         </button>
 
-        {result && (
+       {result && (
   <div className="mt-6 bg-gray-100 p-4 rounded">
     <p>
       <b>Model Assessment:</b> {result.prediction}
     </p>
     <p>
       <b>Estimated Probability of Malignancy:</b>{" "}
-      {(result.probability * 100).toFixed(2)}%
+      {(result.confidence * 100).toFixed(2)}%
     </p>
     <p className="text-xs text-gray-600 mt-2">
       This probability represents the model’s confidence that the image

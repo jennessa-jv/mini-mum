@@ -18,11 +18,11 @@ export default function App() {
 
       <div className="max-w-4xl mx-auto p-4">
         <Routes>
-          {/* Public */}
+   
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
-          {/* Protected */}
+         
           <Route
             path="/dashboard"
             element={
@@ -86,7 +86,7 @@ export default function App() {
               </PrivateRoute>
             }
           />
-          import NearbyDoctors from "./pages/NearbyDoctors";
+          
 
 <Route
   path="/doctors"
@@ -98,7 +98,7 @@ export default function App() {
 />
 
 
-          {/* Catch all */}
+  
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>

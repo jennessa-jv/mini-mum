@@ -1,10 +1,10 @@
 import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
 import useRiskStream from "../hooks/useRiskStream";
 import "leaflet/dist/leaflet.css";
-
+import { useNavigate } from "react-router-dom";
 export default function SafetyMap() {
   const zones = useRiskStream();
-
+  const navigate = useNavigate();
   const getColor = (risk) => {
     if (risk === "High") return "red";
     if (risk === "Medium") return "orange";
@@ -68,6 +68,21 @@ export default function SafetyMap() {
           Low
         </div>
       </div>
+      
+<div
+  style={{
+    marginTop: "6px",
+    padding: "6px 12px",
+    borderRadius: "8px",
+    background: "#f3f4f6",
+    cursor: "pointer",
+    fontWeight: 600,
+    fontSize: "13px"
+  }}
+  onClick={() => navigate("/dashboard")}
+>
+  ← Back to Dashboard
+</div>
 
       <MapContainer center={[20.59, 78.96]} zoom={5} style={{ height: "100vh" }}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
