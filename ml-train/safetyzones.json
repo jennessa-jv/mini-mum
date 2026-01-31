@@ -1,0 +1,260 @@
+[{
+  "_id": {
+    "$oid": "69636ece5851484667ea91ec"
+  },
+  "name": "Andhra Pradesh",
+  "state": "Andhra Pradesh",
+  "coordinates": {
+    "lat": 15.9129,
+    "lng": 79.74
+  },
+  "crime_score": 0.025264922469017542,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69636ece5851484667ea91ee"
+  },
+  "name": "Arunachal Pradesh",
+  "state": "Arunachal Pradesh",
+  "coordinates": {
+    "lat": 28.218,
+    "lng": 94.7278
+  },
+  "crime_score": 0.0013171286595222416,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69636ece5851484667ea91f0"
+  },
+  "name": "Assam",
+  "state": "Assam",
+  "coordinates": {
+    "lat": 26.2006,
+    "lng": 92.9376
+  },
+  "crime_score": 0.028946895767227445,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69636ece5851484667ea91f2"
+  },
+  "name": "Bihar",
+  "state": "Bihar",
+  "coordinates": {
+    "lat": 25.0961,
+    "lng": 85.3131
+  },
+  "crime_score": 0.01365024247141232,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69636ece5851484667ea91f4"
+  },
+  "name": "Chhattisgarh",
+  "state": "Chhattisgarh",
+  "coordinates": {
+    "lat": 21.2787,
+    "lng": 81.8661
+  },
+  "crime_score": 0.04053164102257079,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69636ece5851484667ea91f6"
+  },
+  "name": "Goa",
+  "state": "Goa",
+  "coordinates": {
+    "lat": 15.2993,
+    "lng": 74.124
+  },
+  "crime_score": 0.0017960845357121475,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69636ece5851484667ea91f8"
+  },
+  "name": "Gujarat",
+  "state": "Gujarat",
+  "coordinates": {
+    "lat": 22.2587,
+    "lng": 71.1924
+  },
+  "crime_score": 0.03388612824043585,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69636ece5851484667ea91fa"
+  },
+  "name": "Haryana",
+  "state": "Haryana",
+  "coordinates": {
+    "lat": 29.0588,
+    "lng": 76.0856
+  },
+  "crime_score": 0.033077890199365384,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69636ece5851484667ea91fc"
+  },
+  "name": "Himachal Pradesh",
+  "state": "Himachal Pradesh",
+  "coordinates": {
+    "lat": 31.1048,
+    "lng": 77.1734
+  },
+  "crime_score": 0.00511884092677962,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69636ece5851484667ea91fe"
+  },
+  "name": "Jharkhand",
+  "state": "Jharkhand",
+  "coordinates": {
+    "lat": 23.6102,
+    "lng": 85.2799
+  },
+  "crime_score": 0.005268514638088966,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69636ece5851484667ea9200"
+  },
+  "name": "Karnataka",
+  "state": "Karnataka",
+  "coordinates": {
+    "lat": 15.3173,
+    "lng": 75.7139
+  },
+  "crime_score": 0.042237921331497334,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69636ece5851484667ea9202"
+  },
+  "name": "Kerala",
+  "state": "Kerala",
+  "coordinates": {
+    "lat": 10.8505,
+    "lng": 76.2711
+  },
+  "crime_score": 0.07157396874812907,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69636ece5851484667ea9204"
+  },
+  "name": "Madhya Pradesh",
+  "state": "Madhya Pradesh",
+  "coordinates": {
+    "lat": 22.9734,
+    "lng": 78.6569
+  },
+  "crime_score": 0.12327126863437705,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69636ece5851484667ea9206"
+  },
+  "name": "Maharashtra",
+  "state": "Maharashtra",
+  "coordinates": {
+    "lat": 19.7515,
+    "lng": 75.7139
+  },
+  "crime_score": 0.13033586780817819,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69636ece5851484667ea9208"
+  },
+  "name": "Odisha",
+  "state": "Odisha",
+  "coordinates": {
+    "lat": 20.9517,
+    "lng": 85.0985
+  },
+  "crime_score": 0.029276177932108006,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69636ece5851484667ea920a"
+  },
+  "name": "Punjab",
+  "state": "Punjab",
+  "coordinates": {
+    "lat": 31.1471,
+    "lng": 75.3412
+  },
+  "crime_score": 0.012692330719032509,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69636ece5851484667ea920c"
+  },
+  "name": "Rajasthan",
+  "state": "Rajasthan",
+  "coordinates": {
+    "lat": 27.0238,
+    "lng": 74.2179
+  },
+  "crime_score": 0.049571933185655274,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69636ece5851484667ea920e"
+  },
+  "name": "Tamil Nadu",
+  "state": "Tamil Nadu",
+  "coordinates": {
+    "lat": 11.1271,
+    "lng": 78.6569
+  },
+  "crime_score": 0.03933425133209603,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69636ece5851484667ea9210"
+  },
+  "name": "Telangana",
+  "state": "Telangana",
+  "coordinates": {
+    "lat": 18.1124,
+    "lng": 79.0193
+  },
+  "crime_score": 0.03523319164221996,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69636ece5851484667ea9212"
+  },
+  "name": "Uttar Pradesh",
+  "state": "Uttar Pradesh",
+  "coordinates": {
+    "lat": 26.8467,
+    "lng": 80.9462
+  },
+  "crime_score": 0.2030174220199964,
+  "__v": 0
+}]
