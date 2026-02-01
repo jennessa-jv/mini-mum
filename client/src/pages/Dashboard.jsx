@@ -223,7 +223,7 @@ export default function Dashboard() {
           href="tel:+910000000000"
           className="underline hover:text-rose-800"
         >
-          +91 0000000000
+          +91 000000000
         </a>
       </p>
     </div>
