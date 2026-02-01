@@ -1,84 +1,242 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
 export default function Dashboard() {
   const navigate = useNavigate();
+  const introRef = useRef(null);
+  const questsRef = useRef(null);
+
+  const scrollToIntro = () => {
+    introRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  };
+
+  const scrollToQuests = () => {
+    questsRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  };
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold text-pink-700 mb-6">
-        🌼 Dashboard
-      </h1>
+    <div className="min-h-screen w-full font-mono overflow-x-hidden">
+      <div className="max-w-6xl mx-auto px-4">
+        <section className="min-h-screen flex items-center justify-center">
+          <div className="pixel-card bg-pink-50 w-full max-h-[85vh] p-10 flex flex-col justify-center">
+            <p className="text-xs uppercase tracking-widest text-rose-600 mb-4">
+              Maternal Quest · Level 1
+            </p>
 
+            <h1 className="text-5xl text-rose-800 mb-6 leading-tight">
+              A calm, supportive space<br />for your health
+            </h1>
 
-      <button
-        onClick={() => navigate("/safety-map")}
-        className="bg-pink-600 text-pink px-4 py-2 rounded mb-6"
-      >
-        🌍 View Safety Map
-      </button>
+            <p className="text-rose-700 mb-10 max-w-2xl">
+              ☆.𓋼𓍊 𓆏 𓍊𓋼𓍊.☆<br/>
+              Level up your understanding of health, safety, and care, 
+              one gentle quest at a time.
+              ⋆｡˚ ☁︎ ˚｡⋆｡˚☽˚｡⋆
+            </p>
 
-      <div className="grid md:grid-cols-2 gap-6">
-        <div className="bg-white rounded-2xl shadow-lg p-6 border-4 border-pink-200">
-          <h2 className="text-xl font-bold text-pink-700 mb-2">
-            🌸 Period Corner
-          </h2>
-          <p className="text-sm text-gray-600 mb-4">
-            Track cycles, view predictions, and get insights.
-          </p>
-          <Link
-            to="/period-corner"
-            className="inline-block bg-pink-600 text-white px-4 py-2 rounded-lg"
+            <button
+              onClick={scrollToIntro}
+              className="pixel-button self-start"
+            >
+              ▶ Start Quest
+            </button>
+          </div>
+        </section>
+
+        {/* ABOUT */}
+        <section
+          ref={introRef}
+          className="min-h-screen flex items-center justify-center py-24"
+        >
+          <div
+            onClick={scrollToQuests}
+            className="pixel-card bg-white p-16 max-w-3xl text-center cursor-pointer hover:scale-[1.01] transition-transform"
           >
-            Go to Period Corner →
-          </Link>
-        </div>
+           <p className="text-xs uppercase tracking-widest text-rose-600 mb-6">
+  About This Space
+</p>
 
-        <div className="bg-white rounded-2xl shadow-lg p-6 border-4 border-pink-100">
-  <h2 className="text-xl font-bold text-pink-600 mb-2">
-    🩺 Health Overview
-  </h2>
-  <p className="text-sm text-gray-500 mb-4">
-    View vitals history and health trends.
-  </p>
+<h2 className="text-4xl text-rose-800 mb-8">
+  What is Maternal Quest?
+</h2>
 
-  <button
-    onClick={() => navigate("/health-trends")}
-    className="bg-pink-600 text-white px-4 py-2 rounded-lg"
-  >
-    View Health Trends →
-  </button>
-</div>
-<div className="bg-white rounded-2xl shadow-lg p-6 border-4 border-rose-200">
-  <h2 className="text-xl font-bold text-rose-600 mb-2">
-    🧬 The leading cancer</h2>
-  <p className="text-sm text-gray-600 mb-4">
-    Breast Cancer - a review on the bane of a mammal's existance
-  </p>
+<p className="text-rose-700 text-sm leading-relaxed max-w-3xl mx-auto mb-6">
+  ⊹₊˚‧︵‿₊୨ᰔ୧₊‿︵‧˚₊⊹ <br/><br/>
+  Maternal Quest is a women inclusive(or anyone with a uterus) digital space created to help women
+  understand their bodies, feel safer, and make informed health decisions
+  without pressure or judgment.
+</p>
 
-  <button
-    onClick={() => navigate("/cancer-prediction")}
-    className="bg-rose-600 text-white px-4 py-2 rounded-lg"
-  >
-    Start Prediction →
-  </button>
-</div>
-<button
+<p className="text-rose-700 text-sm leading-relaxed max-w-3xl mx-auto mb-6">
+  Instead of overwhelming information, the platform is organized into
+  gentle “quests”, with each focused on a specific part of health, from
+  cycle awareness and long-term patterns to safety tools and finding care
+  nearby.
+</p>
+
+<p className="text-rose-700 text-sm leading-relaxed max-w-3xl mx-auto mb-10">
+  You can explore at your own pace, return anytime, and choose what matters
+  most to you. There’s no rush, no assumptions, and a gamified view with just clear guidance, useful resources, and support when you need it.
+  <br/>
+  <br/>✩₊˚.⋆☾⋆⁺₊✧
+</p>
+
+<p className="text-xs text-rose-500 tracking-wide">
+  Click anywhere to continue ↓
+</p>
+
+          </div>
+        </section>
+
+      
+        <section ref={questsRef} className="py-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 place-items-center">
+
+           <QuestCard
+  title="Safety Quest"
+  intro="Explore safety insights."
+  points={[
+    "Visual crime heatmaps using NCRB data (2017–2025)",
+    "Highlighting high-risk and safer zones",
+    
+  ]}
+  action="Open Map"
+  onClick={() => navigate("/safety-map")}
+/>
+
+  <QuestCard
+  title="Cycle Quest"
+  intro="Learn about periods, menopause, and how to's."
+  points={[
+    "To do's about pads, tampons and menstrual cups.",
+    "De-stigmatizing periods.",
+    
+  ]}
+  action="Let's go"
+  onClick={() => navigate("/period-corner")}
+/>
+<QuestCard
+  title="Care Quest"
+  intro="Track long-term health patterns."
+  points={[
+    "Track vitals and update them."
+    
+  ]}
+  action="Yayy. Take me!"
+  onClick={() => navigate("/maternal-health")}
+/>
+        <QuestCard
+  title="Chart Quest"
+  intro="Journalling with Vitals!!."
+  points={[
+    "All vital data mapped graphically."
+    
+  ]}
+  action="Let's track 'em"
+  onClick={() => navigate("/health-trends")}
+/>
+        
+
+           <QuestCard
+  title="Hospital Quest"
+  intro="Find doctors and hospitals when you need support."
+  points={[
+    "Welp, let's go."
+    
+  ]}
+  action="Show me"
   onClick={() => navigate("/doctors")}
-  className="
-    flex items-center gap-2
-    bg-pink-500 text-white
-    px-6 py-3
-    rounded-xl
-    font-medium
-    shadow-md
-    transition-all duration-200
-    hover:bg-pink-600 hover:shadow-lg
-    active:scale-[0.98]
-  "
->
-  🩺 Find Nearby Doctors
-</button>
+/>
+          </div>
+        </section>
+
+        <section className="text-center text-rose-600 text-xs tracking-wide pb-16">
+          💗 Save progress · No rush · You’re doing great
+        </section>
+
+      </div>
+
+      <PixelStyles />
+    </div>
+  );
+}
+
+function QuestCard({ title, intro, points, action, onClick }) {
+  return (
+    <div className="quest-card w-full max-w-md">
+      <div className="quest-card-inner">
+        <h3 className="quest-title">{title}</h3>
+
+        <p className="quest-intro">{intro}</p>
+
+        <div className="quest-divider" />
+
+        <ul className="quest-points">
+          {points.map((point, i) => (
+            <li key={i}>{point}</li>
+          ))}
+        </ul>
+
+        <button
+          onClick={onClick}
+          className="quest-button"
+        >
+          {action}
+        </button>
       </div>
     </div>
+  );
+}
+
+
+function PixelStyles() {
+  return (
+    <style>{`
+      html, body, #root {
+        height: 100%;
+        margin: 0;
+        overflow-x: hidden;
+        background: linear-gradient(to bottom right, #fce7f3, #ffe4e6, #f5d0fe);
+      }
+
+      .pixel-card {
+        box-shadow:
+          0 0 0 3px #f472b6,
+          6px 6px 0 #fb7185;
+        transition: transform 0.15s ease;
+      }
+
+      .pixel-card:hover {
+        transform: translate(-2px, -2px);
+        box-shadow:
+          0 0 0 3px #f472b6,
+          10px 10px 0 #fb7185;
+      }
+
+      .pixel-button {
+        background: #fff;
+        border: none;
+        padding: 14px 32px;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #9f1239;
+        box-shadow:
+          0 0 0 3px #f472b6,
+          4px 4px 0 #fb7185;
+        cursor: pointer;
+      }
+
+      .pixel-button.small {
+        padding: 10px 22px;
+        font-size: 12px;
+      }
+    `}</style>
   );
 }

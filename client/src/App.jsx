@@ -66,8 +66,6 @@ export default function App() {
               </PrivateRoute>
             }
           />
-
-          {/* Root */}
           <Route
             path="/"
             element={

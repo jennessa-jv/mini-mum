@@ -14,10 +14,10 @@ import {
 export default function VitalsTrends() {
   const [vitals, setVitals] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate(); // 👈 add this
+  const navigate = useNavigate();
 
   const goBack = () => {
-    navigate("/dashboard"); // 👈 change path if needed
+    navigate("/dashboard");
   };
 
   useEffect(() => {
@@ -26,11 +26,11 @@ export default function VitalsTrends() {
       .then((res) => {
         const formatted = res.data.map((v) => ({
           date: new Date(v.createdAt).toLocaleDateString(),
-          systolicBP: v.systolicBP,
-          diastolicBP: v.diastolicBP,
-          weight: v.weight,
-          bloodSugar: v.bloodSugar,
-          heartRate: v.heartRate
+          systolicBP: Number(v.systolicBP),
+          diastolicBP: Math.max(40, Number(v.diastolicBP)),
+          weight: Number(v.weight),
+          bloodSugar: Number(v.bloodSugar),
+          heartRate: Number(v.heartRate)
         }));
         setVitals(formatted);
       })
@@ -48,7 +48,6 @@ export default function VitalsTrends() {
 
   return (
     <div>
-      {/* 🔙 BACK BUTTON */}
       <button
         onClick={goBack}
         className="mb-6 px-4 py-2 rounded-lg bg-pink-500 text-white font-semibold hover:bg-pink-600 transition"
@@ -60,15 +59,37 @@ export default function VitalsTrends() {
         📈 Health Trends
       </h1>
 
-      <ChartBox title="Blood Pressure">
+      <ChartBox title="Systolic Blood Pressure">
         <LineChart width={700} height={300} data={vitals}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="date" />
-          <YAxis />
+          <YAxis domain={[80, 200]} />
           <Tooltip />
           <Legend />
-          <Line dataKey="systolicBP" stroke="#ec4899" name="Systolic" />
-          <Line dataKey="diastolicBP" stroke="#9333ea" name="Diastolic" />
+          <Line
+            dataKey="systolicBP"
+            stroke="#ec4899"
+            name="Systolic BP"
+            strokeWidth={2}
+            dot={{ r: 3 }}
+          />
+        </LineChart>
+      </ChartBox>
+
+      <ChartBox title="Diastolic Blood Pressure">
+        <LineChart width={700} height={300} data={vitals}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date" />
+          <YAxis domain={[40, 120]} />
+          <Tooltip />
+          <Legend />
+          <Line
+            dataKey="diastolicBP"
+            stroke="#9333ea"
+            name="Diastolic BP"
+            strokeWidth={2}
+            dot={{ r: 3 }}
+          />
         </LineChart>
       </ChartBox>
 
@@ -78,7 +99,14 @@ export default function VitalsTrends() {
           <XAxis dataKey="date" />
           <YAxis />
           <Tooltip />
-          <Line dataKey="weight" stroke="#f97316" />
+          <Legend />
+          <Line
+            dataKey="weight"
+            stroke="#f97316"
+            name="Weight"
+            strokeWidth={2}
+            dot={{ r: 3 }}
+          />
         </LineChart>
       </ChartBox>
 
@@ -88,7 +116,14 @@ export default function VitalsTrends() {
           <XAxis dataKey="date" />
           <YAxis />
           <Tooltip />
-          <Line dataKey="bloodSugar" stroke="#22c55e" />
+          <Legend />
+          <Line
+            dataKey="bloodSugar"
+            stroke="#22c55e"
+            name="Blood Sugar"
+            strokeWidth={2}
+            dot={{ r: 3 }}
+          />
         </LineChart>
       </ChartBox>
 
@@ -98,7 +133,14 @@ export default function VitalsTrends() {
           <XAxis dataKey="date" />
           <YAxis />
           <Tooltip />
-          <Line dataKey="heartRate" stroke="#ef4444" />
+          <Legend />
+          <Line
+            dataKey="heartRate"
+            stroke="#ef4444"
+            name="Heart Rate"
+            strokeWidth={2}
+            dot={{ r: 3 }}
+          />
         </LineChart>
       </ChartBox>
     </div>

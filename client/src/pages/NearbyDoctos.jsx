@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import {Link} from "react-router-dom"
 export default function NearbyDoctors() {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -38,8 +38,11 @@ export default function NearbyDoctors() {
 
   return (
     <div className="p-6">
+      <Link to="/dashboard" className="text-sm text-pink-600 hover:underline">
+        ← Back to Dashboard
+      </Link>
       <h1 className="text-2xl font-bold text-pink-700 mb-4">
-        🩺 Nearby Hospitals
+         Nearby Hospitals
       </h1>
 
       {loading && <p>Loading nearby hospitals...</p>}

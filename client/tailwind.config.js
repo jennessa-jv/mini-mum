@@ -3,7 +3,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Oswald", "sans-serif"],
+        sans: ["Oswald", "sans-serif"],pixel: ["VT323", "monospace"]
+        
       },
     },
   },
