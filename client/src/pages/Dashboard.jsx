@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
-
+import { motion, useScroll, useTransform } from "framer-motion";
 export default function Dashboard() {
   const navigate = useNavigate();
   const introRef = useRef(null);
@@ -22,6 +22,10 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen w-full font-mono overflow-x-hidden">
+      <div className="sparkle-layer" />
+      <div className="floating-pixels" />
+
+
       <div className="max-w-6xl mx-auto px-4">
         <section className="min-h-screen flex items-center justify-center">
           <div className="pixel-card bg-pink-50 w-full max-h-[85vh] p-10 flex flex-col justify-center">
@@ -39,6 +43,13 @@ export default function Dashboard() {
               one gentle quest at a time.
               ⋆｡˚ ☁︎ ˚｡⋆｡˚☽˚｡⋆
             </p>
+            <p
+  onClick={() => alert("✨ You found a hidden sparkle. You're doing amazing.")}
+  className="text-[10px] text-rose-400 cursor-pointer select-none"
+>
+  tap for magic
+</p>
+
 
             <button
               onClick={scrollToIntro}
@@ -49,7 +60,10 @@ export default function Dashboard() {
           </div>
         </section>
 
-        {/* ABOUT */}
+      <section className="text-center text-rose-600 text-xs tracking-wide pb-16"><br/><br/>
+  💗 Progress saved · You’re allowed to go slow · You showed up today
+</section>
+
         <section
           ref={introRef}
           className="min-h-screen flex items-center justify-center py-24"
@@ -68,7 +82,7 @@ export default function Dashboard() {
 
 <p className="text-rose-700 text-sm leading-relaxed max-w-3xl mx-auto mb-6">
   ⊹₊˚‧︵‿₊୨ᰔ୧₊‿︵‧˚₊⊹ <br/><br/>
-  Maternal Quest is a women inclusive(or anyone with a uterus) digital space created to help women
+  Maternal Quest is a women inclusive (or anyone with a uterus as well) digital space created to help women
   understand their bodies, feel safer, and make informed health decisions
   without pressure or judgment.
 </p>
@@ -94,7 +108,28 @@ export default function Dashboard() {
           </div>
         </section>
 
-      
+      <section className="py-24 flex justify-center">
+  <div className="pixel-card bg-pink-50 p-12 max-w-2xl text-center space-y-6">
+    <p className="text-xs uppercase tracking-widest text-rose-600">
+      Today’s Gentle Quest
+    </p>
+
+    <h3 className="text-2xl text-rose-800">
+      Check in with yourself
+    </h3>
+
+    <p className="text-rose-700 text-sm leading-relaxed">
+      ༘˚⋆𐙚｡⋆𖦹.✧˚ <br/><br/>
+      Take a moment to notice how your body feels today.
+      No tracking required. Awareness counts as progress.
+    </p>
+
+    <button className="pixel-button mx-auto">
+      I did this 💗
+    </button>
+  </div>
+</section>
+
         <section ref={questsRef} className="py-24">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 place-items-center">
 
@@ -155,6 +190,46 @@ export default function Dashboard() {
 />
           </div>
         </section>
+<section className="py-24 flex justify-center">
+  <div className="pixel-card bg-white p-12 max-w-xl w-full text-center space-y-6">
+    <p className="text-xs uppercase tracking-widest text-rose-600">
+      Contact me!
+    </p>
+
+    <h2 className="text-3xl text-rose-800">
+      Let’s stay connected
+    </h2>
+
+    <p className="text-rose-700 text-sm leading-relaxed">
+      My name's Jennessa Valder. I'm a 21yo software developer. If you have questions, feedback, or just want to share thoughts about
+      Maternal Quest, feel free to reach out. This space is always growing
+      with care and community.
+    </p>
+
+    <div className="space-y-2 text-sm text-rose-700">
+      <p>
+         Email:{" "}
+        <a
+          href="mailto:jennessavalder@gmail.com"
+          className="underline hover:text-rose-800"
+        >
+          jennessavalder@gmail.com
+        </a>
+      </p>
+
+      <p>
+         Phone:{" "}
+        <a
+          href="tel:+910000000000"
+          className="underline hover:text-rose-800"
+        >
+          +91 0000000000
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
 
         <section className="text-center text-rose-600 text-xs tracking-wide pb-16">
           💗 Save progress · No rush · You’re doing great
@@ -166,7 +241,32 @@ export default function Dashboard() {
     </div>
   );
 }
+function PixelMascot() {
+  const { scrollYProgress } = useScroll();
+  const bounce = useTransform(scrollYProgress, [0, 1], [0, -12]);
 
+  return (
+    <motion.div
+      style={{ y: bounce }}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="fixed bottom-6 left-6 z-20"
+    >
+      <motion.div
+        whileHover={{ scale: 1.1, rotate: -4 }}
+        whileTap={{ scale: 0.95, rotate: 4 }}
+        className="pixel-card bg-white p-4 text-center cursor-pointer"
+        onClick={() => alert("💗 Hi! You're doing great. One step at a time.")}
+      >
+        <p className="text-2xl">🧸</p>
+        <p className="text-[10px] text-rose-600 mt-1">
+          your guide
+        </p>
+      </motion.div>
+    </motion.div>
+  );
+}
 function QuestCard({ title, intro, points, action, onClick }) {
   return (
     <div className="quest-card w-full max-w-md">
@@ -194,7 +294,6 @@ function QuestCard({ title, intro, points, action, onClick }) {
   );
 }
 
-
 function PixelStyles() {
   return (
     <style>{`
@@ -205,7 +304,39 @@ function PixelStyles() {
         background: linear-gradient(to bottom right, #fce7f3, #ffe4e6, #f5d0fe);
       }
 
+      .sparkle-layer {
+       animation:
+    sparkleFloat 12s linear infinite,
+    sparkleTwinkle 4s ease-in-out infinite alternate;
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.6) 1.2px, transparent 1.2px),
+    radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,255,255,0.25) 0.8px, transparent 0.8px);
+  background-size: 120px 120px, 180px 180px, 260px 260px;
+  animation: sparkleFloat 12s linear infinite;
+}
+
+
+     @keyframes sparkleFloat {
+  from {
+    background-position: 0 0, 0 0, 0 0;
+  }
+  to {
+    background-position: 400px 600px, -300px 500px, 200px -400px;
+  }
+}
+@keyframes sparkleTwinkle {
+  from { opacity: 0.4; }
+  to { opacity: 0.75; }
+}
+
       .pixel-card {
+        position: relative;
+        z-index: 1;
         box-shadow:
           0 0 0 3px #f472b6,
           6px 6px 0 #fb7185;
@@ -237,6 +368,25 @@ function PixelStyles() {
         padding: 10px 22px;
         font-size: 12px;
       }
+.floating-pixels {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle, rgba(251,113,133,0.25) 2px, transparent 2px),
+    radial-gradient(circle, rgba(244,114,182,0.2) 1.5px, transparent 1.5px);
+  background-size: 220px 220px, 140px 140px;
+  animation: pixelDrift 18s linear infinite;
+}
+
+@keyframes pixelDrift {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: -600px 800px, 500px -700px; }
+}
+
+
     `}</style>
   );
 }
+

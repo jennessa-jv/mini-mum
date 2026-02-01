@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
+import {Link} from "react-router-dom"
 import {
   LineChart,
   Line,
@@ -48,12 +49,9 @@ export default function VitalsTrends() {
 
   return (
     <div>
-      <button
-        onClick={goBack}
-        className="mb-6 px-4 py-2 rounded-lg bg-pink-500 text-white font-semibold hover:bg-pink-600 transition"
-      >
+      <Link to="/dashboard" className="text-sm text-pink-600 hover:underline">
         ← Back to Dashboard
-      </button>
+      </Link>
 
       <h1 className="text-3xl font-bold text-pink-700 mb-8">
         📈 Health Trends
