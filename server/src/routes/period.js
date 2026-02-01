@@ -1,5 +1,5 @@
 import express from "express";
-import {Period} from "../models/Period.js";
+import { Period } from "../models/Period.js";
 import auth from "../middleware/auth.js";
 
 const router = express.Router();
@@ -12,6 +12,13 @@ router.post("/", auth, async (req, res) => {
   res.status(201).json(period);
 });
 
+router.get("/history", auth, async (req, res) => {
+  const periods = await Period.find({ user: req.user.id }).sort({
+    startDate: 1
+  });
+  res.json(periods);
+});
+
 router.get("/predict", auth, async (req, res) => {
   const periods = await Period.find({ user: req.user.id }).sort({
     startDate: 1
@@ -22,13 +29,6 @@ router.get("/predict", auth, async (req, res) => {
       message: "Not enough data"
     });
   }
-  router.get("/history", auth, async (req, res) => {
-  const periods = await Period.find({ user: req.user.id }).sort({
-    startDate: 1
-  });
-  res.json(periods);
-});
-
 
   const diffs = [];
 
@@ -61,12 +61,23 @@ router.get("/predict", auth, async (req, res) => {
     lastDate.getTime() +
       learnedCycle * 24 * 60 * 60 * 1000
   );
-console.log("🔥 REAL Period.js LOADED");
 
   res.json({
     learnedCycle: Math.round(learnedCycle),
     predictedNextPeriod
   });
 });
+router.delete("/:id", auth, async (req, res) => {
+  const period = await Period.findOne({
+    _id: req.params.id,
+    user: req.user.id
+  });
 
+  if (!period) {
+    return res.status(404).json({ message: "Period not found" });
+  }
+
+  await period.deleteOne();
+  res.json({ message: "Period deleted" });
+});
 export default router;
