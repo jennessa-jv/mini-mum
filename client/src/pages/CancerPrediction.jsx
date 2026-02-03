@@ -198,8 +198,8 @@ export default function CancerPrediction() {
         <p>
           This tool uses artificial intelligence to analyze breast images and
           estimate cancer risk by identifying visual patterns associated with
-          malignant tissue. 
-          Pleasee attach below an image of a mammogram.
+          malignant tissue. The model is trained so that it detects more false positives rather than false negetives(false negetive being a malognant tumor detected as benign)
+          Please attach below an image of a histology slide of breast tissue. <br/>
         </p>
 
         <input
@@ -219,16 +219,16 @@ export default function CancerPrediction() {
        {result && (
   <div className="mt-6 bg-gray-100 p-4 rounded">
     <p>
-      <b>Model Assessment:</b> {result.prediction}
+      <b>Model Assessment:</b> {result.prediction} 
     </p>
-    <p>
+    {/* <p>
       <b>Estimated Probability of Malignancy:</b>{" "}
       {(result.confidence * 100).toFixed(2)}%
-    </p>
-    <p className="text-xs text-gray-600 mt-2">
+    </p> */}
+    {/* <p className="text-xs text-gray-600 mt-2">
       This probability represents the model’s confidence that the image
       contains malignant features, not a medical diagnosis.
-    </p>
+    </p> */}
   </div>
 )}
 

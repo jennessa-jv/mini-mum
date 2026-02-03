@@ -188,6 +188,16 @@ export default function Dashboard() {
   action="Show me"
   onClick={() => navigate("/doctors")}
 />
+<QuestCard
+  title="Cancer Quest"
+  intro="The leading cancer among women-Breast Cancer."
+  points={[
+    "Prevention, Symptoms, Causes."
+    
+  ]}
+  action="Show me"
+  onClick={() => navigate("/cancer-prediction")}
+/>
           </div>
         </section>
 <section className="py-24 flex justify-center">

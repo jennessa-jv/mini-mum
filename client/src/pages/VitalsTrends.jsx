@@ -44,7 +44,9 @@ export default function VitalsTrends() {
   }
 
   if (!vitals.length) {
-    return <p className="text-gray-500">No vitals recorded yet.</p>;
+    return  <Link to="/dashboard" className="text-rose-300 underline">
+          No vitals recorded yet. Back to Dashboard.
+        </Link>;
   }
 
   return (
